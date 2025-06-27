@@ -1,16 +1,16 @@
 --------------------------------------------------------------------------------
-Nom       : 
-Prénom    : 
+Nom       :
+Prénom    :
 --------------------------------------------------------------------------------
 
-Consigne : Dans ce fichier, les à« ... à» indiquent les endroits à  compléter.
-Il s'agit de remplacer les à« ... à» par votre texte.  Merci de laisser une
-ligne blanche avant.  Le texte déjà  écrit doit être conservé !
+Consigne : Dans ce fichier, les « ... » indiquent les endroits à compléter.
+Il s'agit de remplacer les « ... » par votre texte.  Merci de laisser une
+ligne blanche avant.  Le texte déjà écrit doit être conservé !
 
 
 =====[ Temps passé ]============================================================
 
-Ces informations de temps sont demandées à  titre indicatif et ne sont pas
+Ces informations de temps sont demandées à titre indicatif et ne sont pas
 prises en compte dans la notation du projet.
 Il faut remplacer les ... par des nombres.
 
@@ -28,16 +28,32 @@ Pourquoi l'exception OperationInterditeException ne peut pas être définie
 comme vérifiée par le compilateur ?
 --------------------------------------------------------------------------------
 
-...
-
 
 --------------------------------------------------------------------------------
 Expliquer ce qu'il faut faire pour ajouter un nouveau niveau de jeu, par
 exemple la stratégie lente (C13).  Pour plus de précision, on numérotera
-les étapes à  faire.
+les étapes à faire.
 --------------------------------------------------------------------------------
 
-...
+Dans mon code il suffit de créer une nouvelle classe qui implémente l’interface
+Strategie et de l’ajouter dans la logique de création des joueurs. En effet,
+n'imporque quelle nouvelle stratégie suivra cette procédure. Pour le cas de
+l'estratégie dit <<lente>>, on utilise override sur getPrise pour rétourner
+toujours 1 comme quantité d'allumettes à prendre.
+
+étapes:
+1. Créer une nouvelle classe qui implémente l’interface Strategie. On a crée le fichier
+<<StrategieLente.java>> dans le package allumettes avec la méthode getPrise pour rétourner toujours 1.
+
+2. Modifier la classe qui gère la création des joueurs
+Dans la classe Joueur les stratégies sont instanciées. On ajoute un cas pour
+reconnaître le mot-clé "lente" et créer une instance de <<StrategieLente>> pour le joeur que l'utilise.
+
+3. Ajouter des tests unitaires (souhaité, mais non obligatoire)
+Créer une classe de test <<StrategieLenteTest>> pour vérifier le bon fonctionnement de la stratégie.
+
+4. Pour utiliser la nouvelle stratégie lors du lancement du programme, on lance le
+joueur avec @lente comme strategie.
 
 
 --------------------------------------------------------------------------------
@@ -64,7 +80,7 @@ Expliquer comment fonctionne la stratégie supertricheur.
 
 
 --------------------------------------------------------------------------------
-Indiquer les points qui ont été les plus difficiles à  traiter et pourquoi.
+Indiquer les points qui ont été les plus difficiles à traiter et pourquoi.
 --------------------------------------------------------------------------------
 
 ...
@@ -73,7 +89,7 @@ Indiquer les points qui ont été les plus difficiles à  traiter et pourquoi.
 =====[ Explications ]===========================================================
 
 --------------------------------------------------------------------------------
-Donner ici les explications supplémentaires utiles à  la compréhension du
+Donner ici les explications supplémentaires utiles à la compréhension du
 travail rendu.
 --------------------------------------------------------------------------------
 

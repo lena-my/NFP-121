@@ -1,0 +1,1 @@
+javac -cp .:junit-platform-console-standalone-1.10.2.jar allumettes/*.java

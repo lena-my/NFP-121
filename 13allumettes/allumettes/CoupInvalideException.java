@@ -1,8 +1,8 @@
 package allumettes;
 
 /** Exception qui indique qu'un coup invalide est joué.
- * @author	Helena Miura
- * @version	$Revision: 1.3 $
+ * @author  Xavier Crégut
+ * @version $Revision: 1.3 $
  */
 public class CoupInvalideException extends Exception {
 

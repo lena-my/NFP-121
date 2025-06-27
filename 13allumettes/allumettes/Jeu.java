@@ -16,6 +16,7 @@ public interface Jeu {
 	 * @param nbPrises nombre d'allumettes prises.
 	 * @throws CoupInvalideException tentative de prendre un nombre invalide d'allumettes
 	 */
-	void retirer(int nbPrises) throws CoupInvalideException;
+	void retirer(int nbPrises) throws CoupInvalideException, OperationInterditeException;
+	
 
 }

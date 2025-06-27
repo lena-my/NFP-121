@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # -------------------------------------------------------
-# Programme de test en boîte noire pour les 13 allumettes
+# Programme de test en boÃ®te noire pour les 13 allumettes
 # -------------------------------------------------------
 
 usage() {
@@ -18,7 +18,7 @@ warning() {
 mainClass=allumettes.Jouer
 mainFile=`echo $mainClass | tr . /`.java
 
-# Déterminer le dossier des sources
+# DÃ©terminer le dossier des sources
 if [ -f $mainFile ] ; then
     src=.
     bin=.
@@ -33,7 +33,7 @@ fi
 # Positionner CLASSPATH
 export CLASSPATH=$src:$bin:${CLASSPATH:-.}
 
-# Déterminer si l'option -enconding latin1 est nécessaire
+# DÃ©terminer si l'option -enconding latin1 est nÃ©cessaire
 javacOpt=
 if file -i $src/$mainFile |  grep iso-8859 > /dev/null 2>&1 ; then
     echo "Le fichier $src/$mainFile est en latin1."
@@ -42,8 +42,8 @@ if file -i $src/$mainFile |  grep iso-8859 > /dev/null 2>&1 ; then
 fi
 
 # Traiter les arguments de la ligne de commande
-# | Un seul argument possible -d pour déterminer le dossier dans lequel
-# | mettre les résutlats du test (.computed et .diff)
+# | Un seul argument possible -d pour dÃ©terminer le dossier dans lequel
+# | mettre les rÃ©sutlats du test (.computed et .diff)
 if [ "$1" = "-d" ] ; then
 	shift
 	testdiropt="$1"
@@ -52,12 +52,12 @@ if [ "$1" = "-d" ] ; then
 	if [ ! -d "$testdiropt" ] ; then
 		usage "$testdiropt n'est pas un dossier"
 	elif [ ! -w "$testdiropt" ] ; then
-		usage "impossible d'écrire dans $testdiropt"
+		usage "impossible d'Ã©crire dans $testdiropt"
 	fi
 fi
 
 if [ ! -z "$testdiropt" ] ; then
-	echo "Les résultats seront dans $testdiropt."
+	echo "Les rÃ©sultats seront dans $testdiropt."
 fi
 
 
@@ -80,32 +80,32 @@ if javac $javacOpt -d $bin $src/$mainFile ; then
 	outputDir=${testdiropt:-$(dirname "$test")}
 
 	if [ "$testName" = "$testBasename" ] ; then
-		warning "Test ignoré (le suffixe doit être .run) : $test"
+		warning "Test ignorÃ© (le suffixe doit Ãªtre .run) : $test"
 		continue
 	fi
 
 
-	# Définir les noms de fichiers utilisés
+	# DÃ©finir les noms de fichiers utilisÃ©s
 	computed=$outputDir/$testName.computed
 	expected=${test%.run}.expected
 	diff=$outputDir/$testName.diff
 
 
 	if [ ! -r "$expected" ] ; then
-		warning "Fichier de résultat absent ou interdit en lecture : $expected"
+		warning "Fichier de rÃ©sultat absent ou interdit en lecture : $expected"
 		continue
 	fi
 
 	# Lancer le test
 	sh $test > $computed 2>&1
 
-	# Transformer le résultat en utf8 (si nécessaire)
+	# Transformer le rÃ©sultat en utf8 (si nÃ©cessaire)
 	if file -i $computed | grep iso-8859 > /dev/null 2>&1 ; then
-	    echo "Résultat en latin1.  Je transforme en utf8."
+	    echo "RÃ©sultat en latin1.  Je transforme en utf8."
 	    recode latin1..utf8 $computed
 	fi
 
-	# Afficher le résultat
+	# Afficher le rÃ©sultat
 	echo -n "$testName : "
 	if diff -Bbw $computed $expected > $diff 2>&1 ; then
 	    echo "ok"

@@ -1,0 +1,4 @@
+allumettes/Jouer.java:55: error: class, interface, or enum expected
+} {
+  ^
+1 error

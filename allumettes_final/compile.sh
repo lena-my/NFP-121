@@ -1,0 +1,1 @@
+find allumettes swing -name "*.java" ! -name "*Test.java" | xargs javac

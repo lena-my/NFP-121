@@ -4,15 +4,22 @@ public class Arbitre {
     private final Joueur j1, j2;
     private final boolean confiant;
     private Joueur joueurCourant;
+    private EnregistreurXML enregistreur;
+    private int numeroCoup;
 
     public Arbitre(Joueur j1, Joueur j2, boolean confiant) {
         this.j1 = j1;
         this.j2 = j2;
         this.confiant = confiant; // Indiquer si l'arbitre est confiant ou méfiant
         this.joueurCourant = j1; // Initialiser le joueur courant
+        this.enregistreur = new EnregistreurXML();
+        this.numeroCoup = 0;
     }
 
     public void arbitrer(Jeu jeu) {
+        // Démarrer l'enregistrement XML
+        enregistreur.demarrerPartie(j1, j2);
+        
         while (jeu.getNombreAllumettes() > 0) {
             try {
                 // Jouer un tour
@@ -26,6 +33,17 @@ public class Arbitre {
                     // et le joueur suivant a gagné
                     Joueur gagnant = (joueurCourant == j1) ? j2 : j1;
                     System.out.println(gagnant.getNom() + " gagne !");
+                    
+                    // Enregistrer le gagnant dans le XML
+                    enregistreur.terminerPartieAvecGagnant(gagnant.getNom());
+                    
+                    // Sauvegarder le fichier XML
+                    try {
+                        enregistreur.sauvegarder("deroulement.xml");
+                        System.out.println("Déroulement sauvegardé dans deroulement.xml");
+                    } catch (Exception e) {
+                        System.err.println("Erreur lors de la sauvegarde XML : " + e.getMessage());
+                    }
                     break;
                 }else {
                     // alternance des joueurs
@@ -33,6 +51,17 @@ public class Arbitre {
                 }
             } catch (OperationInterditeException e) {
                 System.out.println("Abandon de la partie car " + joueurCourant.getNom() + " triche !");
+                
+                // Enregistrer le tricheur dans le XML
+                enregistreur.terminerPartieAvecTricheur(joueurCourant.getNom());
+                
+                // Sauvegarder le fichier XML
+                try {
+                    enregistreur.sauvegarder("deroulement.xml");
+                    System.out.println("Déroulement sauvegardé dans deroulement.xml");
+                } catch (Exception ex) {
+                    System.err.println("Erreur lors de la sauvegarde XML : " + ex.getMessage());
+                }
                 return;  // return ici termine la partie si un joueur triche
             }
         }
@@ -41,6 +70,7 @@ public class Arbitre {
     private void jouerTour(Jeu jeu) throws OperationInterditeException  {
         int prise;
         Jeu procuration = new Procuration(jeu);
+        numeroCoup++;
 
         boolean imprimirEtat = true; // Indicateur pour afficher l'état du jeu
         while (true) {
@@ -69,6 +99,8 @@ public class Arbitre {
                 // On assume que la prise est valide et l'arbitre retire les allumettes du jeu
                 jeu.retirer(prise);
 
+                // Enregistrer le coup dans le XML
+                enregistreur.enregistrerCoup(numeroCoup, joueurCourant.getNom(), prise, jeu.getNombreAllumettes());
                 
                 System.out.println();
                 break;

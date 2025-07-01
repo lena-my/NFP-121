@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
-Nom       :
-Prénom    :
+Nom       : Miura Yamasaki
+Prénom    : Helena
 --------------------------------------------------------------------------------
 
 Consigne : Dans ce fichier, les « ... » indiquent les endroits à compléter.
@@ -15,7 +15,7 @@ prises en compte dans la notation du projet.
 Il faut remplacer les ... par des nombres.
 
 
-* Temps passé sur la V1 : ... heures ... minutes
+* Temps passé sur la V1 : 26 heures ... minutes
 * Temps passé sur la V2 : ... heures ... minutes
 
 Pour la V2 on ne tiendra pas compte du temps passé sur la V1.
@@ -27,7 +27,7 @@ Pour la V2 on ne tiendra pas compte du temps passé sur la V1.
 Pourquoi l'exception OperationInterditeException ne peut pas être définie
 comme vérifiée par le compilateur ?
 --------------------------------------------------------------------------------
-
+OperationInterditeException hérite de RunTimeException (Exception non vérifiée).
 
 --------------------------------------------------------------------------------
 Expliquer ce qu'il faut faire pour ajouter un nouveau niveau de jeu, par
@@ -35,18 +35,18 @@ exemple la stratégie lente (C13).  Pour plus de précision, on numérotera
 les étapes à faire.
 --------------------------------------------------------------------------------
 
-Dans mon code il suffit de créer une nouvelle classe qui implémente l’interface
+Il suffit de créer une nouvelle classe qui implémente l’interface
 Strategie et de l’ajouter dans la logique de création des joueurs. En effet,
 n'imporque quelle nouvelle stratégie suivra cette procédure. Pour le cas de
-l'estratégie dit <<lente>>, on utilise override sur getPrise pour rétourner
+la stratégie dit <<lente>>, on utilise override sur getPrise pour retourner
 toujours 1 comme quantité d'allumettes à prendre.
 
 étapes:
-1. Créer une nouvelle classe qui implémente l’interface Strategie. On a crée le fichier
+1. Créer une nouvelle classe qui implémente l’interface Strategie. J'ai crée le fichier
 <<StrategieLente.java>> dans le package allumettes avec la méthode getPrise pour rétourner toujours 1.
 
 2. Modifier la classe qui gère la création des joueurs
-Dans la classe Joueur les stratégies sont instanciées. On ajoute un cas pour
+Dans la classe Joueur les stratégies sont instanciées. On ajoute un cas pour 
 reconnaître le mot-clé "lente" et créer une instance de <<StrategieLente>> pour le joeur que l'utilise.
 
 3. Ajouter des tests unitaires (souhaité, mais non obligatoire)
@@ -61,7 +61,8 @@ Expliquer ce qui permet, dans votre conception, de changer dynamiquement
 (en cours d'exécution du programme) la stratégie d'un joueur (C14).
 --------------------------------------------------------------------------------
 
-...
+Le champ strategie de la classe Joueur est modifiable à tout moment.
+Toutes les stratégies sont interchangeables grâce à l’interface commune.
 
 
 --------------------------------------------------------------------------------
@@ -69,7 +70,8 @@ Est-ce que l'arbitre peut détecter une triche quand la stratégie du joueur
 est swing ? Pourquoi ?
 --------------------------------------------------------------------------------
 
-...
+L’arbitre ne peut détecter une triche avec la stratégie swing que si cette stratégie tente effectivement de tricher. 
+Si la stratégie swing joue honnêtement, il n’y a aucune triche à détecter.
 
 
 --------------------------------------------------------------------------------
@@ -83,7 +85,10 @@ Expliquer comment fonctionne la stratégie supertricheur.
 Indiquer les points qui ont été les plus difficiles à traiter et pourquoi.
 --------------------------------------------------------------------------------
 
-...
+Interprétation des attentes et le cahier de charges lui-même. Je trouve plus facile d'interpréter quand c'est plus visuel.
+S'adapter au code qui était déjà présent. 
+Personnellement, j’aurai fait le projet différemment, mais suivre des consignes sans modifier ce qu’il ne fallait pas, ce n’est pas toujours évident. 
+Le projet est très long, et avec une charge de travail assez importante en dehors de ce cours avec d'autres UE, il devient vite chronophage. 
 
 
 =====[ Explications ]===========================================================
@@ -93,6 +98,7 @@ Donner ici les explications supplémentaires utiles à la compréhension du
 travail rendu.
 --------------------------------------------------------------------------------
 
-...
+ ./jeu_naif.sh  --> script pour stratégie naif "java allumettes.Jouer Helena@humain Ordinateur@naif"
+  ./jeu_tricheur.sh  --> script pour stratégie tricheur "java allumettes.Jouer Helena@naif Ordinateur@tricheur"
 
 --------------------------------------------------------------------------------

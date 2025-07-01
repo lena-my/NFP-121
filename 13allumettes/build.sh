@@ -1,1 +1,0 @@
-javac allumettes/*.java

@@ -1,41 +1,4 @@
-Date de l'évaluation : dim. 29 juin 2025 14:36:12 CEST
+Date de l'évaluation : mer. 02 juil. 2025 06:31:49 CEST
 
-Attention, il est interdit de changer ConfigurationException.java	(voir evaluation1/ConfigurationException.java.diff)
-Attention, il est interdit de changer CoupInvalideException.java	(voir evaluation1/CoupInvalideException.java.diff)
+Pas de fichier Java trouvé !
 
-Nombre de similitudes : 1	(voir evaluation1/sim_java.txt)
-Les similitudes indiquent généralement du code à restructurer.
-
-Erreurs checkstyle (différentes/types) : 1/1	(voir evaluation1//checkstyle.txt)
-
-Classe OperationInterditeException : NON DÉFINIE (ou pas sur Gitlab)
-
-Procuration sur le jeu réel : Non identifiée
-
-OperationInterditeException : JAMAIS LEVÉE
-OperationInterditeException : JAMAIS RECUPÉRÉE
-
-Throwable, Exception et RuntimeException ne devraient pas être récupérées car trop générales... ok
-
-AssertionError ne doit pas être récupérée... ok
-
-Autres exceptions récupérées :
-  | allumettes/Joueur.java:21:      } catch (ConfigurationException e) {
-  | allumettes/Jouer.java:21:       } catch (ConfigurationException e) {
-
-Utilisation de 'Scanner' : NON
-
-Utilisation de 'split' : NON
-
-Utilisation de 'Random' : NON
-
-Utilisation de '3' : ok
-
-Affichage de 'Impossible !' : jamais affiché (ERREUR)
-
-Utilisation de 'System.exit' : INTERDIT d'utiliser System.exit(), sauf celui fourni dans Jouer.java
-  | allumettes/Joueur.java:25:          System.exit(1);
-  | allumettes/Jouer.java:25:           System.exit(1);
-
-Compilation de Jouer.java : ERREUR !	(voir evaluation1/Jouer.java.txt)
-J'arrête les tests...

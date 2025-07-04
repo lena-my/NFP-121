@@ -63,3 +63,4 @@ nbdist/
 target/
 build/
 .gradle/
+*.class
